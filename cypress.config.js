@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+const { allureCypress } = require("allure-cypress/reporter");
 require('dotenv').config()
 
 module.exports = defineConfig({
@@ -7,6 +8,9 @@ module.exports = defineConfig({
     viewportWidth: 1920,
     viewportHeight: 1080,
     setupNodeEvents(on, config) {
+      allureCypress(on, config, {
+        resultsDir: "allure-results",
+      });
       config.env.BASE_URL = process.env.BASE_URL;
       config.env.USER_EMAIL = process.env.USER_EMAIL
       config.env.USER_PASSWORD = process.env.USER_PASSWORD
