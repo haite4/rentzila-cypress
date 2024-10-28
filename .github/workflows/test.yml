@@ -20,8 +20,28 @@ jobs:
           echo "USER_PASSWORD=${{ secrets.USER_PASSWORD }}" >> $GITHUB_ENV
           echo "USER_PHONE_NUMBER=${{ secrets.USER_PHONE_NUMBER }}" >> $GITHUB_ENV
 
-      - name: Cypress run 
-        uses: cypress-io/github-action@v6
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress tests
+        run: npm run cy:all
+
+      - name: Create Allure Report
+        if: always()
         with:
-          start: npm run cy:all
-          tsconfig-paths: cypress/tsconfig.json
+          name: allure-report
+          path: ./allure-report
+      
+      - name: Deploy Allure report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+
+      - name: Upload Allure report as GitHub artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
