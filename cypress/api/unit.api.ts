@@ -1,12 +1,12 @@
-import { Endpoints } from "../constants/enums_endpoints";
+import { Endpoints } from "../constants/enumsEndpoints";
 import { ApiHelper } from "./rentzila.api";
-import { RandomValue } from "../helper/random_value";
-import { MoneyCurrency } from "../constants/money_currency";
-import { TypeOfWork } from "../constants/type_of_work";
-import { TimeOfWork } from "../constants/time_of_work";
-import { PaymentMethods } from "../constants/payment_methods";
+import  RandomValue  from "../helper/randomValue";
+import { MoneyCurrency } from "../constants/moneyCurrency";
+import { TypeOfWork } from "../constants/typeOfWork";
+import { TimeOfWork } from "../constants/timeOfWork";
+import { PaymentMethods } from "../constants/paymentMethods";
 
-export class UnitApi extends ApiHelper {
+class UnitApi extends ApiHelper {
   private randomValue: RandomValue;
   constructor() {
     super();
@@ -66,3 +66,6 @@ export class UnitApi extends ApiHelper {
     });
   }
 }
+
+
+export default new UnitApi()

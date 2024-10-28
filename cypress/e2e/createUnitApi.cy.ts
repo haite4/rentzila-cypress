@@ -1,11 +1,8 @@
-import { UnitApi } from "../api/unit.api";
-import { LoginPage } from "../pages/loginPage";
-import { UnitsPage } from "../pages/unitsPage";
+import unitApi from "../api/unit.api";
+import loginPage from "../pages/loginPage";
+import unitsPage  from "../pages/unitsPage";
 
 describe("Login functionality", () => {
-  const loginPage = new LoginPage();
-  const unitApi = new UnitApi();
-  const unitsPage = new UnitsPage();
   let unitId: number;
   let unitName: string;
 

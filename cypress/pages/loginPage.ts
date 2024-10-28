@@ -1,33 +1,28 @@
-const loginPasswordInput = "#password";
-const loginEmailInput = "#email";
-const submitBtn = 'button[class*="ItemButtons_darkBlueRoundBtn"]';
-const headerAuthBtn = '[class*="NavbarAuthBlock_buttonEnter"]';
-const userIcon = `[data-testid="avatarBlock"]`;
-const profileDropdownEmail = '[class*="ProfileDropdownMenu_email"]';
-
-export class LoginPage {
+class LoginPage {
   get loginPasswordInput() {
-    return cy.get(loginPasswordInput);
+    return cy.get("#password");
   }
 
   get loginEmailInput() {
-    return cy.get(loginEmailInput);
+    return cy.get("#email");
   }
 
   get submitBtn() {
-    return cy.get(submitBtn).contains("Увійти");
+    return cy
+      .get('button[class*="ItemButtons_darkBlueRoundBtn"]')
+      .contains("Увійти");
   }
 
   get headerAuthBtn() {
-    return cy.get(headerAuthBtn);
+    return cy.get('[class*="NavbarAuthBlock_buttonEnter"]');
   }
 
   get userIcon() {
-    return cy.get(userIcon);
+    return cy.get(`[data-testid="avatarBlock"]`);
   }
 
   get profileDropdownEmail() {
-    return cy.get(profileDropdownEmail);
+    return cy.get('[class*="ProfileDropdownMenu_email"]');
   }
 
   fillLoginPasswordInput(password: string) {
@@ -60,3 +55,5 @@ export class LoginPage {
     this.clickLoginSubmitBtn();
   }
 }
+
+export default new LoginPage();

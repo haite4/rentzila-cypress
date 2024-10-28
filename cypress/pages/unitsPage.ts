@@ -1,18 +1,14 @@
-const units = `[data-testid="units"]`;
-const multiTabBtn = ".MuiButtonBase-root";
-const pendingAnnouncementsName = '[class*="OwnerUnitCard_name"]';
-
-export class UnitsPage {
+class UnitsPage {
   get unitsInDropDownMenu() {
-    return cy.get(units);
+    return cy.get(`[data-testid="units"]`);
   }
 
   get pendingAnnouncements() {
-    return cy.get(multiTabBtn).contains("Очікуючі");
+    return cy.get(".MuiButtonBase-root").contains("Очікуючі");
   }
 
   get firstPendingAnnouncementsName() {
-    return cy.get(pendingAnnouncementsName).first();
+    return cy.get('[class*="OwnerUnitCard_name"]').first();
   }
 
   clickPendingAnnouncements() {
@@ -23,3 +19,5 @@ export class UnitsPage {
     this.unitsInDropDownMenu.click();
   }
 }
+
+export default new UnitsPage();

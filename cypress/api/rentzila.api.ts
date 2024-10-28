@@ -1,4 +1,4 @@
-import { Endpoints } from "../constants/enums_endpoints";
+import { Endpoints } from "../constants/enumsEndpoints";
 
 export class ApiHelper {
   private adminAccessToken: string | null = null;

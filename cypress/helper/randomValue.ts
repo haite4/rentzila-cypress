@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-export class RandomValue {
+class RandomValue {
   selectRandomValueFromArray(array: any[]) {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
@@ -10,3 +10,5 @@ export class RandomValue {
     return faker.string.alphanumeric(length);
   }
 }
+
+export default RandomValue
