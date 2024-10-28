@@ -1,5 +1,5 @@
 import { Endpoints } from "../constants/enumsEndpoints";
-import { ApiHelper } from "./rentzila.api";
+import { ApiHelper } from "./rentzilaApi";
 import  RandomValue  from "../helper/randomValue";
 import { MoneyCurrency } from "../constants/moneyCurrency";
 import { TypeOfWork } from "../constants/typeOfWork";
