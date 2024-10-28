@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3404","Verify that unit removed from ""Очікуючі"" tab","Login functionality","Mon Oct 28 21:25:03 UTC 2024","broken","Mon Oct 28 21:25:06 UTC 2024","","","",""
+"","6875","Verify that unit displayed in ""Очікуючі"" tab","Login functionality","Mon Oct 28 21:24:56 UTC 2024","broken","Mon Oct 28 21:25:03 UTC 2024","","","",""

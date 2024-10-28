@@ -1,1 +1,1 @@
-[]
+[{"uid":"22d3c1311a932801","name":"Verify that unit displayed in \"Очікуючі\" tab","time":{"start":1730150696596,"stop":1730150703471,"duration":6875},"status":"broken","severity":"normal"},{"uid":"61d03959600c50ed","name":"Verify that unit removed from \"Очікуючі\" tab","time":{"start":1730150703548,"stop":1730150706952,"duration":3404},"status":"broken","severity":"normal"}]
