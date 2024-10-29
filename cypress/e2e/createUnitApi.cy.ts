@@ -2,7 +2,7 @@ import unitApi from "../api/unitApi";
 import loginPage from "../pages/loginPage";
 import unitsPage from "../pages/unitsPage";
 
-describe("Login functionality", () => {
+describe("Create and delete unit functionality", () => {
   let unitId: number;
   let unitName: string;
 
