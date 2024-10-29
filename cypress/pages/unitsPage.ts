@@ -10,14 +10,6 @@ class UnitsPage {
   get firstPendingAnnouncementsName() {
     return cy.get('[class*="OwnerUnitCard_name"]').first();
   }
-
-  clickPendingAnnouncements() {
-    this.pendingAnnouncements.click();
-  }
-
-  clickUnitsInDropDownMenu() {
-    this.unitsInDropDownMenu.click();
-  }
 }
 
 export default new UnitsPage();

@@ -25,34 +25,10 @@ class LoginPage {
     return cy.get('[class*="ProfileDropdownMenu_email"]');
   }
 
-  fillLoginPasswordInput(password: string) {
-    this.loginPasswordInput.type(password);
-  }
-
-  fillLoginEmailInput(email: string) {
-    this.loginEmailInput.type(email);
-  }
-
-  clickLoginSubmitBtn() {
-    this.submitBtn.click();
-  }
-
-  clickHeaderAuthBtn() {
-    this.headerAuthBtn.click();
-  }
-
-  clickAvatarBlock() {
-    this.userIcon.click();
-  }
-
-  getProfileDropdownEmailText() {
-    return this.profileDropdownEmail;
-  }
-
   login(email: string, password: string) {
-    this.fillLoginEmailInput(email);
-    this.fillLoginPasswordInput(password);
-    this.clickLoginSubmitBtn();
+    this.loginEmailInput.type(email);
+    this.loginPasswordInput.type(password);
+    this.submitBtn.click();
   }
 }
 

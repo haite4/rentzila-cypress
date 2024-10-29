@@ -57,6 +57,21 @@ This repository contains automated tests using Cypress, written specifically for
     ```sh
     npm run cy:all
     ```
+
+## Allure Report: 
+
+1. **Generate Allure Report:**
+    ```sh
+    npm run allure:generate
+    ```
+2. **Open Allure Report:**
+    ```sh
+    npm run allure:open
+    ```
+## Report on CI: 
+
+[Github Pages allure report](https://haite4.github.io/rentzila-cypress/)
+
 ## ENV
 - **ADMIN_EMAIL**: you can get from the project owner
 - **ADMIN_PASSWORD**: you can get from the project owner
