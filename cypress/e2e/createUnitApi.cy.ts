@@ -23,6 +23,12 @@ describe("Login functionality", () => {
     });
   });
 
+  it('Verify that unit images uploaded', () => {
+    unitApi.createUnitImages(unitId).then((status) => {
+      expect(status).to.eq(201)
+    })
+  })
+
   it('Verify that unit removed from "Очікуючі" tab', () => {
     unitApi.deleteUnit(unitId).then((status) => {
       loginPage.clickAvatarBlock();

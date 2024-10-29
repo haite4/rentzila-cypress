@@ -1,6 +1,6 @@
 import { Endpoints } from "../constants/enumsEndpoints";
 import { ApiHelper } from "./rentzilaApi";
-import  RandomValue  from "../helper/randomValue";
+import RandomValue from "../helper/randomValue";
 import { MoneyCurrency } from "../constants/moneyCurrency";
 import { TypeOfWork } from "../constants/typeOfWork";
 import { TimeOfWork } from "../constants/timeOfWork";
@@ -65,7 +65,30 @@ class UnitApi extends ApiHelper {
         });
     });
   }
+
+  createUnitImages(unitId: number, is_main: boolean = true) {
+    return super.createUserJwtToken().then((token) => {
+      cy.fixture("images/uploadImage.jpg", "binary").then((Image) => {
+        const blob = Cypress.Blob.binaryStringToBlob(Image, "image/jpg");
+        const formData = new FormData();
+        formData.append("unit", unitId.toString());
+        formData.append("image", blob, "image.jpg");
+        formData.append("is_main", is_main.toString());
+        return cy
+          .request({
+            method: "POST",
+            url: `${Cypress.env("BASE_URL")}${Endpoints.API_UNITS_IMAGES}`,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+          })
+          .then((response) => {
+            return response.status;
+          });
+      });
+    });
+  }
 }
 
-
-export default new UnitApi()
+export default new UnitApi();
