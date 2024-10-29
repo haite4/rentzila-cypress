@@ -13,20 +13,20 @@ This repository contains automated tests using Cypress, written specifically for
     - `cypress`: ^13.15.1
 
 ## Steps to Install
-1. Install Node.js:
+1. **Install Node.js**:
 
     [Node.js](https://nodejs.org/en/download/package-manager)
 
-2. Clone the repository:
+2. **Clone the repository**:
     ```sh
     https://github.com/haite4/rentzila-cypress
     ```
-3. Navigate to the project directory:
+3. **Navigate to the project directory**:
     ```sh 
     cd rentzila-cypress
     ```
 
-4. Install dependencies:
+4. **Install dependencies**:
     ```sh
     npm install
     ``` 
