@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","10106","Verify that unit displayed in ""Очікуючі"" tab","Create and delete unit functionality","Wed Oct 30 16:23:09 UTC 2024","passed","Wed Oct 30 16:23:19 UTC 2024","","","",""
-"","6680","Verify that unit images uploaded","Create and delete unit functionality","Wed Oct 30 16:23:19 UTC 2024","passed","Wed Oct 30 16:23:26 UTC 2024","","","",""
-"","5636","Verify that unit removed from ""Очікуючі"" tab","Create and delete unit functionality","Wed Oct 30 16:23:26 UTC 2024","passed","Wed Oct 30 16:23:31 UTC 2024","","","",""
+"","3229","Verify that unit removed from ""Очікуючі"" tab","Create and delete unit functionality","Thu Oct 31 12:29:40 UTC 2024","broken","Thu Oct 31 12:29:44 UTC 2024","","","",""
+"","6366","Verify that unit displayed in ""Очікуючі"" tab","Create and delete unit functionality","Thu Oct 31 12:29:30 UTC 2024","broken","Thu Oct 31 12:29:36 UTC 2024","","","",""
+"","4160","Verify that unit images uploaded","Create and delete unit functionality","Thu Oct 31 12:29:36 UTC 2024","broken","Thu Oct 31 12:29:40 UTC 2024","","","",""
