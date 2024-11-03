@@ -23,6 +23,7 @@ describe("Unit Edit functionality", () => {
     cy.fixture("textSymbols/generalMsg").as("generalMsg");
     cy.fixture("textSymbols/errorMsg").as("errorMsg");
   });
+  
   it("TC-182 Edit Unit without changes", function () {
     unitsPage.unitCardTitleText.then((unitName) => {
       unitsPage.editBtn.click();
