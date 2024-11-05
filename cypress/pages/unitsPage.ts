@@ -128,42 +128,14 @@ class UnitsPage {
     return cy.get('[data-testid="mapLabel"]');
   }
 
-  get emptyBlockInfoTitleExist() {
-    return cy.document().then((doc) => {
-      const element = doc.querySelector('[class*="EmptyBlockInfo_title"]');
-      return Boolean(element);
-    });
-  }
-
-  verifyAnnouncementListNotEmpty() {
-    return this.emptyBlockInfoTitleExist.then((bolean) => {
-      if (bolean) {
-        return unitApi.createUnit().then((data) => {
-          return unitApi.createUnitImages(data.id).then(() => {
-            return crmApi.approveUnitCreation(data.id).then((approveData) => {
-              expect(approveData.is_approved).to.be.true;
-            });
-          });
+  createApprovedUnit() {
+    return unitApi.createUnit().then((data) => {
+      return unitApi.createUnitImages(data.id).then(() => {
+        return crmApi.approveUnitCreation(data.id).then((approveData) => {
+          expect(approveData.is_approved).to.be.true;
         });
-      }
+      });
     });
-  }
-
-  parseAddress(address: string) {
-    address = address.replace(/\u00A0/g, " ").trim();
-
-    const addressPattern = /^(.+?),\s.*\s(.+?),\s(.+)$/;
-    const matches = address.match(addressPattern);
-
-    if (matches) {
-      return {
-        city: matches[1].trim(),
-        country: matches[2].trim(),
-        region: matches[3].trim(),
-      };
-    } else {
-      throw new Error("Address does not match the expected format");
-    }
   }
 
   getMapPopUpBoundingBox() {
