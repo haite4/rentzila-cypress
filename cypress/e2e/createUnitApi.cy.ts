@@ -18,6 +18,7 @@ describe("Create and delete unit functionality", () => {
       unitName = data.name;
       loginPage.userIcon.click();
       unitsPage.unitsInDropDownMenu.click();
+      cy.wait(1000)
       unitsPage.pendingAnnouncements.click();
       unitsPage.firstPendingAnnouncementsName.should("have.text", unitName);
     });
@@ -33,6 +34,7 @@ describe("Create and delete unit functionality", () => {
     unitApi.deleteUnit(unitId).then((status) => {
       loginPage.userIcon.click();
       unitsPage.unitsInDropDownMenu.click();
+      cy.wait(1000)
       unitsPage.pendingAnnouncements.click();
       unitsPage.firstPendingAnnouncementsName.should("not.have.text", unitName);
       expect(status).to.eq(204);

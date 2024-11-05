@@ -33,6 +33,7 @@ describe("Unit Edit functionality", () => {
       unitsPage.unitCard.should("be.visible");
       unitsPage.editBtn.click();
       unitsPage.nextBtn.click();
+      cy.wait(1000)
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
       unitsPage.viewInMyAdsBtn.click();
@@ -200,7 +201,7 @@ describe("Unit Edit functionality", () => {
     });
   });
 
-  it("Check 'Опис' input field", function () {
+  it("TC-534 Check 'Опис' input field", function () {
     unitsPage.editBtn.click();
     cy.wait(1000);
     unitsPage.detailedDescriptionTextArea.clear();
