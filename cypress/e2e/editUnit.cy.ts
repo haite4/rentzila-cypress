@@ -26,7 +26,6 @@ describe("Unit Edit functionality", () => {
 
   afterEach("Remove unit after each test", function () {
     unitApi.deleteUnit(Number(this.unitid));
-    cy.log(`Delete unit id ----- ${this.unitid}`);
   });
 
   it("TC-182 Edit Unit without changes", function () {
