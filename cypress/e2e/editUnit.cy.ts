@@ -31,7 +31,6 @@ describe("Unit Edit functionality", () => {
   });
 
   it("TC-182 Edit Unit without changes", function () {
-    cy.log(`${this.unitid}`)
     unitsPage.unitCardTitleText.then((unitName) => {
       unitsPage.editBtn.click();
       unitsPage.editAnnouncmentTitle.should("be.visible");
