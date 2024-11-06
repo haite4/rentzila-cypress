@@ -37,6 +37,7 @@ describe("Unit Edit functionality", () => {
       unitsPage.preventBtn.first().click();
       unitsPage.unitCard.should("be.visible");
       unitsPage.editBtn.click();
+      cy.wait(2000)
       unitsPage.nextBtn.first().click();
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
