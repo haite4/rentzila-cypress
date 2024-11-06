@@ -21,7 +21,7 @@ class CrmApi extends ApiHelper {
     });
   }
 
-  searcPendinghAdsByName(unitName: string){
+  searchPendingAdsByName(unitName: string){
     return super.createAdminJwtToken().then((token) => {
       return cy.request({
         method: "GET",
