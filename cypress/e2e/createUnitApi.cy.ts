@@ -18,7 +18,7 @@ describe("Create and delete unit functionality", () => {
       unitName = data.name;
       loginPage.userIcon.click();
       unitsPage.unitsInDropDownMenu.click();
-      unitsPage.pendingAnnouncements.first().click();
+      unitsPage.pendingAnnouncements.click();
       unitsPage.pendingAnnouncementsName.first().should("have.text", unitName);
     });
   });
@@ -33,7 +33,7 @@ describe("Create and delete unit functionality", () => {
     unitApi.deleteUnit(unitId).then((status) => {
       loginPage.userIcon.click();
       unitsPage.unitsInDropDownMenu.click();
-      unitsPage.pendingAnnouncements.first().click();
+      unitsPage.pendingAnnouncements.click();
       unitsPage.pendingAnnouncementsName.first().should("not.have.text", unitName);
       expect(status).to.eq(204);
     });
