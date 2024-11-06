@@ -19,7 +19,7 @@ describe("Create and delete unit functionality", () => {
       loginPage.userIcon.click();
       unitsPage.unitsInDropDownMenu.click();
       unitsPage.pendingAnnouncements.click();
-      unitsPage.pendingAnnouncementsName.first().should("have.text", unitName);
+      unitsPage.pendingAnnouncementsName.should("have.text", unitName);
     });
   });
 
@@ -34,7 +34,7 @@ describe("Create and delete unit functionality", () => {
       loginPage.userIcon.click();
       unitsPage.unitsInDropDownMenu.click();
       unitsPage.pendingAnnouncements.click();
-      unitsPage.pendingAnnouncementsName.first().should("not.have.text", unitName);
+      unitsPage.pendingAnnouncementsName.should("not.have.text", unitName);
       expect(status).to.eq(204);
     });
   });

@@ -10,7 +10,7 @@ class UnitsPage {
     return cy.get(".MuiButtonBase-root").contains("Очікуючі");
   }
 
-  get firstPendingAnnouncementsName() {
+  get pendingAnnouncementsName() {
     return cy.get('[class*="OwnerUnitCard_name"]').first();
   }
 
