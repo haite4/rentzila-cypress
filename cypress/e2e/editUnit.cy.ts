@@ -5,18 +5,18 @@ import randomValue from "cypress/helper/randomValue";
 import unitApi from "cypress/api/unitApi";
 
 describe("Unit Edit functionality", () => {
+  const unitIdList = []
   beforeEach("Add unit", () => {
     cy.visit("/");
     loginPage.headerAuthBtn.click();
     loginPage.login(Cypress.env("USER_EMAIL"), Cypress.env("USER_PASSWORD"));
     loginPage.userIcon.click();
     unitsPage.unitsInDropDownMenu.click();
-    cy.wait(3000);
     unitsPage.createApprovedUnit().then((data) => {
       cy.reload();
+      unitIdList.push(data.id)
       cy.wrap(data.id).as("unitid");
     });
-    cy.wait(3000);
     unitsPage.unitCard.then((unitcard) => {
       expect(unitcard.length).to.be.at.least(1);
     });
@@ -24,26 +24,24 @@ describe("Unit Edit functionality", () => {
     cy.fixture("textSymbols/errorMsg").as("errorMsg");
   });
 
-  afterEach("Remove unit after each test", function () {
-    unitApi.deleteUnit(Number(this.unitid));
+  after("Remove unit after each test", function () {
+    cy.wrap(unitIdList).each((id) => {
+      unitApi.deleteUnit(Number(id));
+    });
   });
 
   it("TC-182 Edit Unit without changes", function () {
-    cy.wait(2000);
+    cy.log(`${this.unitid}`)
     unitsPage.unitCardTitleText.then((unitName) => {
       unitsPage.editBtn.click();
       unitsPage.editAnnouncmentTitle.should("be.visible");
-      cy.wait(1000);
-      unitsPage.preventBtn.click();
-      cy.wait(2000);
+      unitsPage.preventBtn.first().click();
       unitsPage.unitCard.should("be.visible");
       unitsPage.editBtn.click();
-      unitsPage.nextBtn.click();
-      cy.wait(2000);
+      unitsPage.nextBtn.first().click();
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
       unitsPage.viewInMyAdsBtn.click();
-      cy.wait(2000);
       unitsPage.emptyBlockInfoTitle.should("be.visible");
       crmApi.searchPendingAdsByName(unitName).then((response) => {
         expect(response.status).to.be.eq(200);
@@ -53,9 +51,8 @@ describe("Unit Edit functionality", () => {
   });
 
   it("TC-272 Check 'Назва оголошення' input field", function () {
-    cy.wait(2000);
     unitsPage.editBtn.click();
-    cy.wait(1000);
+    cy.wait(2000)
     unitsPage.announcementInput.clear();
     unitsPage.announcementInput.should("have.value", "");
     unitsPage.announcementInput.should(
@@ -83,7 +80,6 @@ describe("Unit Edit functionality", () => {
     unitsPage.announcementInput.type(randomUnitName);
     unitsPage.descriptionError.should("not.exist");
     unitsPage.nextBtn.click();
-    cy.wait(2000);
     unitsPage.successfullyEditedMsg.should("be.visible");
     unitsPage.viewInMyAdsBtn.should("be.visible");
     crmApi.searchPendingAdsByName(randomUnitName).then((response) => {
@@ -93,9 +89,7 @@ describe("Unit Edit functionality", () => {
   });
 
   it("TC-273 Check 'Виробник транспортного засобу' input field", function () {
-    cy.wait(2000);
     unitsPage.editBtn.click();
-    cy.wait(1000);
     unitsPage.closeVehicleBtn.click();
     unitsPage.vehicleManufacturerInput.should(
       "have.attr",
@@ -114,7 +108,6 @@ describe("Unit Edit functionality", () => {
       this.errorMsg.requiredField
     );
     const randomName = randomValue.generateStringWithLength(12);
-    cy.wait(2000);
     unitsPage.vehicleManufacturerInput.type(randomName);
     unitsPage.vehicleManufacturerNotFoundItem.then((element) => {
       const regex = new RegExp(
@@ -137,7 +130,6 @@ describe("Unit Edit functionality", () => {
     );
     unitsPage.announcementInput.invoke("val").then((value) => {
       unitsPage.nextBtn.click();
-      cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
       crmApi.searchPendingAdsByName(String(value)).then((response) => {
@@ -154,9 +146,9 @@ describe("Unit Edit functionality", () => {
   });
 
   it("TC-532 Check 'Назва моделі' input field", function () {
-    cy.wait(2000);
     unitsPage.editBtn.click();
-    cy.wait(1000);
+    cy.wait(2000)
+    unitsPage.modelNameInput.should("be.visible")
     unitsPage.modelNameInput.clear();
     unitsPage.modelNameInput.should("have.value", "");
     unitsPage.modelNameInput.type(this.generalMsg.invalidSymbols);
@@ -171,7 +163,6 @@ describe("Unit Edit functionality", () => {
       const randomModelName = randomValue.generateStringWithLength(15);
       unitsPage.modelNameInput.type(randomModelName);
       unitsPage.nextBtn.click();
-      cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
       crmApi.searchPendingAdsByName(String(value)).then((response) => {
@@ -183,17 +174,15 @@ describe("Unit Edit functionality", () => {
   });
 
   it("TC-533 Check 'Технічні характеристики' input field", function () {
-    cy.wait(2000);
     unitsPage.editBtn.click();
-    cy.wait(1000);
+    cy.wait(2000)
+    unitsPage.techSpecsTextArea.should("be.visible")
     unitsPage.techSpecsTextArea.clear();
     unitsPage.techSpecsTextArea.should("have.value", "");
     unitsPage.nextBtn.click();
-    cy.wait(2000);
     unitsPage.successfullyEditedMsg.should("be.visible");
     unitsPage.viewInMyAdsBtn.should("be.visible");
     unitsPage.viewInMyAdsBtn.click();
-    cy.wait(1000);
     unitsPage.expectingdUnit.click();
     unitsPage.editBtn.eq(0).click();
     unitsPage.techSpecsTextArea.should("have.value", "");
@@ -203,7 +192,6 @@ describe("Unit Edit functionality", () => {
     unitsPage.techSpecsTextArea.type(randomTechSpecs);
     unitsPage.announcementInput.invoke("val").then((value) => {
       unitsPage.nextBtn.click();
-      cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
       crmApi.searchPendingAdsByName(String(value)).then((response) => {
@@ -217,17 +205,15 @@ describe("Unit Edit functionality", () => {
   });
 
   it("TC-534 Check 'Опис' input field", function () {
-    cy.wait(2000);
     unitsPage.editBtn.click();
-    cy.wait(1000);
+    cy.wait(2000)
+    unitsPage.detailedDescriptionTextArea.should("be.visible")
     unitsPage.detailedDescriptionTextArea.clear();
     unitsPage.detailedDescriptionTextArea.should("have.value", "");
     unitsPage.nextBtn.click();
-    cy.wait(2000);
     unitsPage.successfullyEditedMsg.should("be.visible");
     unitsPage.viewInMyAdsBtn.should("be.visible");
     unitsPage.viewInMyAdsBtn.click();
-    cy.wait(1000);
     unitsPage.expectingdUnit.click();
     unitsPage.editBtn.eq(0).click();
     unitsPage.detailedDescriptionTextArea.should("have.value", "");
@@ -235,9 +221,9 @@ describe("Unit Edit functionality", () => {
     unitsPage.detailedDescriptionTextArea.should("have.value", "");
     const randomDetaildDescription = randomValue.generateStringWithLength(60);
     unitsPage.detailedDescriptionTextArea.type(randomDetaildDescription);
+    cy.wait(2000)
     unitsPage.announcementInput.invoke("val").then((value) => {
       unitsPage.nextBtn.click();
-      cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
       crmApi.searchPendingAdsByName(String(value)).then((response) => {
@@ -251,9 +237,7 @@ describe("Unit Edit functionality", () => {
   });
 
   it("TC-535 Check 'Місце розташування технічного засобу' functionality", function () {
-    cy.wait(2000);
     unitsPage.editBtn.click();
-    cy.wait(1000);
     unitsPage.choseOnMapBtn.click();
     unitsPage.mapPopUpTitle.should(
       "have.text",
@@ -262,14 +246,14 @@ describe("Unit Edit functionality", () => {
     unitsPage.getMapPopUpBoundingBox().then(({ x, y }) => {
       cy.get("body").click(x, y);
     });
-    cy.wait(1500);
+    cy.wait(3000)
     unitsPage.selectedAdress.invoke("text").then((address) => {
       unitsPage.mapPopUpSubmitBtn.click();
       unitsPage.mapPopUp.should("not.exist");
       unitsPage.mapLabel.should("have.text", address);
+      cy.wait(2000)
       unitsPage.announcementInput.invoke("val").then((value) => {
         unitsPage.nextBtn.click();
-        cy.wait(2000);
         unitsPage.successfullyEditedMsg.should("be.visible");
         unitsPage.viewInMyAdsBtn.should("be.visible");
         crmApi.searchPendingAdsByName(String(value)).then((response) => {
