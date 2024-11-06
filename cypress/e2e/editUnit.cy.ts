@@ -45,7 +45,7 @@ describe("Unit Edit functionality", () => {
       unitsPage.viewInMyAdsBtn.click();
       cy.wait(2000);
       unitsPage.emptyBlockInfoTitle.should("be.visible");
-      crmApi.searcPendinghAdsByName(unitName).then((response) => {
+      crmApi.searchPendingAdsByName(unitName).then((response) => {
         expect(response.status).to.be.eq(200);
         expect(response.body.results[0].name).to.be.eq(unitName);
       });
@@ -86,7 +86,7 @@ describe("Unit Edit functionality", () => {
     cy.wait(2000);
     unitsPage.successfullyEditedMsg.should("be.visible");
     unitsPage.viewInMyAdsBtn.should("be.visible");
-    crmApi.searcPendinghAdsByName(randomUnitName).then((response) => {
+    crmApi.searchPendingAdsByName(randomUnitName).then((response) => {
       expect(response.status).to.be.eq(200);
       expect(response.body.results[0].name).to.be.eq(randomUnitName);
     });
@@ -140,7 +140,7 @@ describe("Unit Edit functionality", () => {
       cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
-      crmApi.searcPendinghAdsByName(String(value)).then((response) => {
+      crmApi.searchPendingAdsByName(String(value)).then((response) => {
         const manufacturerId = response.body.results[0].manufacturer;
         crmApi.manufacturersById(manufacturerId).then((response) => {
           const manufacturerName = response.body.name;
@@ -174,7 +174,7 @@ describe("Unit Edit functionality", () => {
       cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
-      crmApi.searcPendinghAdsByName(String(value)).then((response) => {
+      crmApi.searchPendingAdsByName(String(value)).then((response) => {
         const modelName = response.body.results[0].model_name;
         expect(modelName).to.be.eq(randomModelName);
         expect(response.status).to.be.eq(200);
@@ -206,7 +206,7 @@ describe("Unit Edit functionality", () => {
       cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
-      crmApi.searcPendinghAdsByName(String(value)).then((response) => {
+      crmApi.searchPendingAdsByName(String(value)).then((response) => {
         const unitId = response.body.results[0].id;
         crmApi.getUnitById(unitId).then((response) => {
           expect(response.body.features).to.be.eq(randomTechSpecs);
@@ -240,7 +240,7 @@ describe("Unit Edit functionality", () => {
       cy.wait(2000);
       unitsPage.successfullyEditedMsg.should("be.visible");
       unitsPage.viewInMyAdsBtn.should("be.visible");
-      crmApi.searcPendinghAdsByName(String(value)).then((response) => {
+      crmApi.searchPendingAdsByName(String(value)).then((response) => {
         const unitId = response.body.results[0].id;
         crmApi.getUnitById(unitId).then((response) => {
           expect(response.body.description).to.be.eq(randomDetaildDescription);
@@ -272,7 +272,7 @@ describe("Unit Edit functionality", () => {
         cy.wait(2000);
         unitsPage.successfullyEditedMsg.should("be.visible");
         unitsPage.viewInMyAdsBtn.should("be.visible");
-        crmApi.searcPendinghAdsByName(String(value)).then((response) => {
+        crmApi.searchPendingAdsByName(String(value)).then((response) => {
           const unitId = response.body.results[0].id;
           crmApi.getUnitById(unitId).then((response) => {
             expect(response.body.country).to.be.eq(this.generalMsg.country);
