@@ -11,4 +11,4 @@ class RandomValue {
   }
 }
 
-export default RandomValue
+export default new RandomValue()

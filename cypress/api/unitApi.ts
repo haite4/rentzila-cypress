@@ -1,17 +1,12 @@
 import { Endpoints } from "../constants/enumsEndpoints";
 import { ApiHelper } from "./rentzilaApi";
-import RandomValue from "../helper/randomValue";
+import randomValue from "../helper/randomValue";
 import { MoneyCurrency } from "../constants/moneyCurrency";
 import { TypeOfWork } from "../constants/typeOfWork";
 import { TimeOfWork } from "../constants/timeOfWork";
 import { PaymentMethods } from "../constants/paymentMethods";
 
 class UnitApi extends ApiHelper {
-  private randomValue: RandomValue;
-  constructor() {
-    super();
-    this.randomValue = new RandomValue();
-  }
 
   createUnit() {
     return super.createUserJwtToken().then((token) => {
@@ -24,23 +19,23 @@ class UnitApi extends ApiHelper {
           },
           body: {
             category: 146,
-            name: this.randomValue.generateStringWithLength(10),
+            name: randomValue.generateStringWithLength(10),
             manufacturer: 10,
-            model_name: this.randomValue.generateStringWithLength(10),
-            features: this.randomValue.generateStringWithLength(10),
-            description: this.randomValue.generateStringWithLength(100),
+            model_name: randomValue.generateStringWithLength(10),
+            features: randomValue.generateStringWithLength(10),
+            description: randomValue.generateStringWithLength(100),
             lat: 50.46013446353369,
             lng: 30.46777478959968,
             owner: 1777,
             minimal_price: 2222,
             money_value:
-              this.randomValue.selectRandomValueFromArray(MoneyCurrency),
+            randomValue.selectRandomValueFromArray(MoneyCurrency),
             type_of_work:
-              this.randomValue.selectRandomValueFromArray(TypeOfWork),
+            randomValue.selectRandomValueFromArray(TypeOfWork),
             time_of_work:
-              this.randomValue.selectRandomValueFromArray(TimeOfWork),
+            randomValue.selectRandomValueFromArray(TimeOfWork),
             payment_method:
-              this.randomValue.selectRandomValueFromArray(PaymentMethods),
+            randomValue.selectRandomValueFromArray(PaymentMethods),
             services: [336],
           },
         })
